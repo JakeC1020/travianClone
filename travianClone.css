@@ -1,0 +1,7 @@
+/* CSS declarations go here */
+.village {
+	display: inline-block;
+	width: 200px;
+	min-height: 200px;
+	border: 1px solid black;
+}

@@ -1,0 +1,42 @@
+<head>
+  <title>travianClone</title>
+</head>
+
+<body>
+  <h1>TravianClone</h1>
+  	{{> addVillageForm}}
+
+ 	{{#each villages}}
+ 		{{> village}}
+	{{/each}}
+</body>
+
+<template name="village">
+	<div class="village">
+		{{name}}
+		
+		{{> addBuildingForm}}
+
+		{{#each buildings}}
+			{{> building}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="building">
+	<span>{{name}} - {{level}} <button class="level-up">+</button></span>
+</template>
+
+<template name="addVillageForm">
+	<form>
+		<input type="text" name="villageName">
+		<button type="submit">Add Village</button>
+	</form>
+</template>
+
+<template name="addBuildingForm">
+	<form>
+		<input type="text" name="buildingName">
+		<button type="submit">Add Building</button>
+	</form>
+</template>
