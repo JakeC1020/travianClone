@@ -24,7 +24,13 @@
 </template>
 
 <template name="building">
-	<span>{{name}} - {{level}} <button class="level-up">+</button></span>
+	<span>
+		{{name}} - {{level}} 
+		{{#if hasResources level}}
+			<button class="level-up">+</button>
+		{{/if}}
+	</span>
+	<br>
 </template>
 
 <template name="addVillageForm">
