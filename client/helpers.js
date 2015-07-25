@@ -12,15 +12,13 @@ Template.village.helpers({
 });
 
 Template.building.helpers({
-	hasResources: function (buildingLevel) {
-		var ratio = {resource1: 1, resource2: 2, resource3: 4, resource4: 2}
-		var resources = Resources.findOne({});
+	hasResources: function (level) {
+		var ratio = getRatio();
+		var resources = Resources.findOne({}); // Temp
+		var resourcesNeeded = getResourcesNeeded(ratio, level);
 		var hasResourcesState = true;
-		console.log(resources);
-		$.each(ratio, function(resource, scaler) {
-			var resourcesNeeded = Math.pow(buildingLevel*scaler, 2)*100;
-			console.log("Need: " + resourcesNeeded + resource);
-			if (resourcesNeeded > resources[resource]) {
+		$.each(resourcesNeeded, function(resource, amount) {
+			if (amount > resources[resource]) {
 				hasResourcesState = false;
 			}
 		});

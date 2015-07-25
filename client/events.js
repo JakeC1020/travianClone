@@ -1,6 +1,15 @@
 Template.building.events({
 	"click .level-up": function  () {
 		var selectedBuilding = this._id;
+		var currentLevel = this.level;
+		var resourcesOwed = getResourcesNeeded(getRatio(), currentLevel);
+		var selectedResourcesEntry = Resources.findOne({})._id; // Temp until User accounts
+		$.each(resourcesOwed, function(resource, amount) {
+			var negativeAmount = amount*-1;
+			var $inc = {};
+			$inc[resource] = negativeAmount;
+			Resources.update(selectedResourcesEntry, {$inc: $inc});
+		});
 		Buildings.update(selectedBuilding, {$inc: {level: 1}});
 	}
 });
